@@ -1,0 +1,39 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Game {
+  id: ID!
+  moves: [Move!]!
+  winner: Player
+  status: Status!
+  turn: Player!
+}
+
+type Move {
+  id: ID!
+  game: Game!
+  rowIndex: Int!
+  columnIndex: Int!
+  player: Player!
+}
+
+type Query {
+  game(id: ID!): Game
+}
+
+type Mutation {
+  NewGame: Game!
+  NewMove(gameId: ID!, rowIndex: Int!, columnIndex: Int!, player: Player!): Move!
+}
+
+enum Player {
+  X
+  O
+}
+
+enum Status {
+  ACTIVE
+  DRAW
+  WINNER
+}
